@@ -1,0 +1,9 @@
+#folders
+Library
+Logs
+Temp
+UserSettings
+
+#files
+.vsconfig
+FlappyBird.sln
