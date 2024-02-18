@@ -4,36 +4,38 @@ using UnityEngine;
 
 public class PipeSpawnScript : MonoBehaviour
 {
-    public GameObject pipe;
     public float spawnRate = 2;
     private float timer = 0;
     private float heightOffset = 5;
 
-    // Start is called before the first frame update
+    public GameObject pipe;
+
     void Start()
     {
         spawnPipes();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (timer < spawnRate)
+        if (this.timer < spawnRate)
         {
-            timer += Time.deltaTime;
+            this.timer += Time.deltaTime;
         }
         else
         {
             spawnPipes();
-            timer = 0;
+            this.timer = 0;
         }
     }
 
     void spawnPipes()
     {
-        float lowestPoint = transform.position.y - heightOffset;
-        float highestPoint = transform.position.y + heightOffset;
+        if(LogicScript.birdIsAlive)
+        {
+            float lowestPoint = transform.position.y - this.heightOffset;
+            float highestPoint = transform.position.y + this.heightOffset;
 
-        Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), transform.position.z), transform.rotation);
+            Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), transform.position.z), transform.rotation);
+        }
     }
 }

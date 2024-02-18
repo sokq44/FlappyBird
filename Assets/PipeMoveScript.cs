@@ -7,18 +7,14 @@ public class PipeMoveScript : MonoBehaviour
     public float moveSpeed = 5;
     private float deadZone = -15f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        transform.position = transform.position + (Vector3.left * moveSpeed) * Time.deltaTime;
+        if(LogicScript.birdIsAlive)
+        {
+            transform.position = transform.position + (Vector3.left * this.moveSpeed) * Time.deltaTime;
 
-        if(transform.position.x < deadZone)
-            Destroy(gameObject);
+            if (transform.position.x < this.deadZone)
+                Destroy(gameObject);
+        }
     }
 }
